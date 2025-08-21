@@ -25,7 +25,31 @@ namespace GRandEddie
         private void Form1_Load(object sender, EventArgs e)
         {
             sql_connect();
-            button1.Text = this.x;
+
+            int yOffset = 10;
+            Dictionary<string, string> buttonData = new Dictionary<string, string>
+{
+    { "Button1", "Action1" },
+    { "Button2", "Action2" },
+    { "Button3", "Action3" }
+};
+
+
+            foreach (var entry in buttonData)
+            {
+                Button btn = new Button();
+                btn.Text = entry.Key;
+                btn.Tag = entry.Value; // Store associated data
+                btn.Location = new Point(10, yOffset);
+                btn.Size = new Size(100, 30);
+                //btn.Click += Button_Click;
+
+                this.Controls.Add(btn);
+                yOffset += 40;
+            }
+
+
+         
         }
 
         internal void sql_connect() {
