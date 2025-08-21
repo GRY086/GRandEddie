@@ -7,19 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySqlConnector;
 
 namespace GRandEddie
 {
-    public partial class FormTest : Form
+    public partial class ConnectionForm : Form
     {
-        public FormTest()
+        public ConnectionForm()
         {
             InitializeComponent();
         }
 
         private void FormTest_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
