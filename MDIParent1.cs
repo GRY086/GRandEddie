@@ -13,15 +13,17 @@ namespace GRandEddie
     public partial class MDIParent1 : Form
     {
         private int childFormNumber = 0;
+        public string x;
 
-        public MDIParent1()
+        public MDIParent1(string x)
         {
             InitializeComponent();
+            this.x = x;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Form childForm = new Form1();
+            Form childForm = new Form1(this.x);
             childForm.MdiParent = this;
             childForm.Dock = DockStyle.Fill;
             childForm.FormBorderStyle = FormBorderStyle.None;
