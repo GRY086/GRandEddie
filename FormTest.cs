@@ -16,5 +16,10 @@ namespace GRandEddie
         {
             InitializeComponent();
         }
+
+        private void FormTest_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
