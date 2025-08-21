@@ -28,13 +28,14 @@ namespace GRandEddie
 
             int yOffset = 10;
             Dictionary<string, string> buttonData = new Dictionary<string, string>
-{
-    { "Button1", "Action1" },
-    { "Button2", "Action2" },
-    { "Button3", "Action3" }
-};
+            {
+                { "Button1", "Action1" },
+                { "Button2", "Action2" },
+                { "Button3", "Action3" }
+            };
 
 
+/*
             foreach (var entry in buttonData)
             {
                 Button btn = new Button();
@@ -47,9 +48,33 @@ namespace GRandEddie
                 this.Controls.Add(btn);
                 yOffset += 40;
             }
+*/
+
+            // Example usage:
+            DataTable categoryTable = LoadTableData("category");
+            if (categoryTable != null)
+            {
+                // Create an array of DataRow items
+                DataRow[] rowsArray = categoryTable.Select();
+
+                foreach (DataRow row in rowsArray)
+                {
+                    // Access column values, e.g. row["ColumnName"]
+                    // Example: Console.WriteLine(row["id"]);
+                    Button btn = new Button();
+                    btn.Text = row["categoryname"].ToString();
+                    //btn.Tag = entry.Value; // Store associated data
+                    btn.Location = new Point(10, yOffset);
+                    btn.Size = new Size(200, 40);
+                    btn.Click += (sender, e) => { MessageBox.Show(row["categoryid"].ToString()); };
+
+                    this.Controls.Add(btn);
+                    yOffset += 40;
+
+                }
+            }
 
 
-         
         }
 
         internal void sql_connect() {
@@ -90,10 +115,10 @@ namespace GRandEddie
             LoadTableData(selectedTable);
         }
 
-        private void LoadTableData(string tableName)
+        private DataTable LoadTableData(string tableName)
         {
             using MySqlConnection connection = new MySqlConnection(connectionString);
-
+            DataTable dataTable = new();
 
             try
             {
@@ -101,15 +126,18 @@ namespace GRandEddie
                 string query = $"SELECT * FROM {tableName}"; // Use brackets to handle special characters
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
+                dataTable = new DataTable();
                 adapter.Fill(dataTable);
+                return dataTable;
 
-              
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading data: " + ex.Message);
             }
+            return dataTable;
+            
         }
         }
     }
