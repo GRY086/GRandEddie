@@ -13,6 +13,7 @@ namespace GRandEddie
 {
     public partial class ConnectionForm : Form
     {
+
         public ConnectionForm()
         {
             InitializeComponent();
