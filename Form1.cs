@@ -57,7 +57,6 @@ namespace GRandEddie
                 // Create an array of DataRow items
                 DataRow[] rowsArray = categoryTable.Select();
 
-
                 foreach (DataRow row in rowsArray)
                 {
                     // Access column values, e.g. row["ColumnName"]
