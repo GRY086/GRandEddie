@@ -40,6 +40,7 @@
             toolStripSeparator2 = new ToolStripSeparator();
             helpToolStripButton = new ToolStripButton();
             toolTip = new ToolTip(components);
+            panel1 = new Panel();
             toolStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -119,11 +120,21 @@
             helpToolStripButton.Size = new Size(61, 24);
             helpToolStripButton.Text = "Help";
             // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(964, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(455, 697);
+            panel1.TabIndex = 3;
+            // 
             // MDIParent1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(843, 697);
+            ClientSize = new Size(1419, 697);
+            Controls.Add(panel1);
             Controls.Add(toolStrip);
             IsMdiContainer = true;
             Margin = new Padding(4, 5, 4, 5);
@@ -148,6 +159,7 @@
         private System.Windows.Forms.ToolStripButton printPreviewToolStripButton;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolTip toolTip;
+        private Panel panel1;
     }
 }
 

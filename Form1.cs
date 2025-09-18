@@ -1,6 +1,6 @@
 using MySqlConnector;
 using System.Data;
-using System.Diagnostics;
+using GrAndEddie;
 
 namespace GRandEddie
 {
@@ -12,7 +12,7 @@ namespace GRandEddie
         {
             InitializeComponent();
             this.x = x;
-            Debug.Write(this.x);
+           
                
         }
 
@@ -59,24 +59,30 @@ namespace GRandEddie
 
                 foreach (DataRow row in rowsArray)
                 {
-                    // Access column values, e.g. row["ColumnName"]
-                    // Example: Console.WriteLine(row["id"]);
-                    Button btn = new Button();
-                    btn.Text = row["categoryname"].ToString();
-                    //btn.Tag = entry.Value; // Store associated data
-                    btn.Location = new Point(10, yOffset);
-                    btn.Size = new Size(200, 40);
-                    btn.Click += (sender, e) => { MessageBox.Show(row["categoryid"].ToString()); };
+                    try
+                    {
+                        // Access column values, e.g. row["ColumnName"]
+                        // Example: Console.WriteLine(row["id"]);
+                        Button btn = new Button();
+                        btn.Text = row["categoryname"].ToString();
+                        btn.Tag =  row["categoryid"].ToString();
+                        //btn.Tag = entry.Value; // Store associated data
+                        btn.Location = new Point(10, yOffset);
+                        btn.Size = new Size(200, 40);
+                        btn.Click += (sender, e) => { ItemForm Item = new(btn.Tag.ToString()); Item.ShowDialog(); };
 
-                    this.Controls.Add(btn);
-                    yOffset += 40;
+                        this.Controls.Add(btn);
+                        yOffset += 40;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error processing row: " + ex.Message);
 
-
+                    }
                 }
             }
 
-
-        }
+            }
 
         internal void sql_connect() {
 
